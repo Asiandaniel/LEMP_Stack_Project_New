@@ -105,6 +105,7 @@ sudo echo 'Hello LEMP from hostname ' $(TOKEN=$(curl -X PUT "http://169.254.169.
 `
 ![image](https://github.com/user-attachments/assets/aebafdba-76a9-46d7-a0e1-095fc8c687ca)
 
+
 # Testing PHP with Nginx
 
 i created a PHP info file using the command below 
@@ -114,7 +115,7 @@ I added the following code inside my nano file
 `<?php
 phpinfo();
 ?>`
-![image](https://github.com/user-attachments/assets/e67b515e-5719-4f16-a725-3164af2bb04b)
+
 
 I accessed http://<Public-IP-Address>/info.php in my browser.
 
