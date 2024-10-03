@@ -1,0 +1,77 @@
+### Self-Study Documentation: Deploying a LEMP Stack on AWS EC2
+
+#### Introduction
+This project focused on deploying a LEMP stack (Linux, Nginx, MySQL, PHP) on an AWS EC2 instance. The goal was to set up a functional web server capable of serving dynamic PHP web pages, managing data with MySQL, and handling requests via Nginx.
+
+#### Project Setup
+- Launched an EC2 instance and connected through SSH using the command:
+  ```
+  ssh -i <Your-private-key.pem> ubuntu@<EC2-Public-IP-address>
+  ```
+- Updated the server’s package index and installed Nginx with:
+  ```
+  sudo apt update
+  sudo apt install nginx
+  ```
+
+#### Configuring Nginx
+- Confirmed Nginx installation with:
+  ```
+  sudo systemctl status nginx
+  ```
+- Opened port 80 on EC2 to allow HTTP traffic.
+- Tested the local Nginx server using:
+  ```
+  curl http://localhost:80
+  curl http://127.0.0.1:80
+  ```
+- Accessed the server through the EC2 public IP address.
+
+#### Installing and Configuring MySQL
+- Installed MySQL using:
+  ```
+  sudo apt install mysql-server
+  ```
+- Connected to the MySQL shell with:
+  ```
+  sudo mysql
+  ```
+- Changed the root password and secured MySQL with:
+  ```
+  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
+  ```
+
+#### Errors Encountered
+- **Error 1045 (28000): Access Denied for User 'root'@'localhost'**
+  - **Solution**: Corrected by resetting the root password using the `ALTER USER` command in the MySQL shell.
+
+- **404 Error When Accessing PHP Info Page**
+  - **Solution**: Fixed by configuring Nginx to work with PHP, specifically by editing the Nginx configuration file `/etc/nginx/sites-available/projectLEMP` and confirming the PHP processor path.
+
+- **Permission Issues When Creating/Editing Files in `/var/www/projectLEMP`**
+  - **Solution**: Used `sudo` to open nano for file editing and updated the directory ownership with:
+    ```
+    sudo chown -R $USER:$USER /var/www/projectLEMP
+    ```
+
+#### Configuring PHP with Nginx
+- Installed PHP-FPM and PHP-MySQL using:
+  ```
+  sudo apt install php-fpm php-mysql
+  ```
+- Set up a server block configuration file at `/etc/nginx/sites-available/projectLEMP` with PHP settings, and activated it by creating a symbolic link to `/etc/nginx/sites-enabled/`.
+
+#### Creating the Database and Table
+- Created a database named `example_database` and a user `example_user`.
+- Set up a `todo_list` table and inserted sample data.
+
+#### Testing PHP Integration
+- Created `info.php` and `todo_list.php` files in `/var/www/projectLEMP/` and confirmed their functionality by accessing them in a web browser.
+
+#### Lessons Learned
+- Proper Nginx configuration is essential for PHP integration.
+- File permissions and ownership need to be set correctly to avoid issues.
+- Testing configurations step-by-step makes it easier to catch and resolve problems early.
+
+#### Conclusion
+Deploying a LEMP stack demands attention to detail, especially in configuring Nginx, PHP, and MySQL. This project offered valuable insights into setting up a web server, troubleshooting common errors, and integrating various technologies for a smooth deployment.
