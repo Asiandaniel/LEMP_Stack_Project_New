@@ -154,3 +154,11 @@ INSERT INTO example_database.todo_list (content) VALUES ("My second important it
 
 ![image](https://github.com/user-attachments/assets/b5f2cb36-a14e-4b70-9377-c03a72976314)
 
+
+You can now open `http://<Your-EC2-Public-IP>/todo_list.php` in your browser to confirm that your "TODO" list is displayed properly.
+
+## 11. Final Check
+
+Visit `http://<Your-EC2-Public-IP>/todo_list.php` to see the data fetched from the MySQL database.
+
+![WhatsApp Image 2024-10-03 at 21 30 45_18b5c079](https://github.com/user-attachments/assets/3e4c5839-f7d0-40e3-b87d-7f8b80b950c3)
